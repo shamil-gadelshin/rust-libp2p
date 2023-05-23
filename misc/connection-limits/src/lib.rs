@@ -29,6 +29,8 @@ use std::fmt;
 use std::task::{Context, Poll};
 use void::Void;
 
+pub type Event = Void;
+
 /// A [`NetworkBehaviour`] that enforces a set of [`ConnectionLimits`].
 ///
 /// For these limits to take effect, this needs to be composed into the behaviour tree of your application.
@@ -201,7 +203,7 @@ impl ConnectionLimits {
 
 impl NetworkBehaviour for Behaviour {
     type ConnectionHandler = dummy::ConnectionHandler;
-    type OutEvent = Void;
+    type OutEvent = Event;
 
     fn handle_pending_inbound_connection(
         &mut self,
