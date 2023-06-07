@@ -24,12 +24,12 @@ use libp2p_swarm::{
     dummy, ConnectionClosed, ConnectionDenied, ConnectionId, FromSwarm, NetworkBehaviour,
     PollParameters, THandler, THandlerInEvent, THandlerOutEvent, ToSwarm,
 };
+use never_say_never::Never;
 use std::collections::{HashMap, HashSet};
 use std::fmt;
 use std::task::{Context, Poll};
-use void::Void;
 
-pub type Event = Void;
+pub type Event = Never;
 
 /// A [`NetworkBehaviour`] that enforces a set of [`ConnectionLimits`].
 ///
@@ -348,9 +348,9 @@ impl NetworkBehaviour for Behaviour {
         &mut self,
         _id: PeerId,
         _: ConnectionId,
-        event: THandlerOutEvent<Self>,
+        _: THandlerOutEvent<Self>,
     ) {
-        void::unreachable(event)
+        unsafe { core::hint::unreachable_unchecked() }
     }
 
     fn poll(

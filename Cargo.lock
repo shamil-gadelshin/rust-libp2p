@@ -2312,9 +2312,9 @@ dependencies = [
  "libp2p-swarm",
  "libp2p-swarm-derive",
  "libp2p-swarm-test",
+ "never-say-never",
  "quickcheck-ext",
  "rand 0.8.5",
- "void",
 ]
 
 [[package]]
@@ -3374,6 +3374,12 @@ dependencies = [
  "log",
  "tokio",
 ]
+
+[[package]]
+name = "never-say-never"
+version = "6.6.666"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "cf5a574dadd7941adeaa71823ecba5e28331b8313fb2e1c6a5c7e5981ea53ad6"
 
 [[package]]
 name = "nix"
