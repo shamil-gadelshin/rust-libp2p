@@ -536,12 +536,6 @@ fn custom_out_event_no_type_parameters() {
         None,
     }
 
-    impl From<void::Void> for OutEvent {
-        fn from(_e: void::Void) -> Self {
-            Self::None
-        }
-    }
-
     require_net_behaviour::<Behaviour<String>>();
     require_net_behaviour::<Behaviour<()>>();
 }

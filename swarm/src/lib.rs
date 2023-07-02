@@ -105,6 +105,8 @@ pub mod derive_prelude {
     pub use libp2p_core::Endpoint;
     pub use libp2p_core::Multiaddr;
     pub use libp2p_identity::PeerId;
+    pub use void;
+    pub use void::Void;
 }
 
 pub use behaviour::{

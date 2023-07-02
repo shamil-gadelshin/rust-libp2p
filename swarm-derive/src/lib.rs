@@ -92,6 +92,8 @@ fn build_struct(ast: &DeriveInput, data_struct: &DataStruct) -> syn::Result<Toke
     let t_handler_out_event = quote! { #prelude_path::THandlerOutEvent };
     let endpoint = quote! { #prelude_path::Endpoint };
     let connection_denied = quote! { #prelude_path::ConnectionDenied };
+    let void = quote! { #prelude_path::void };
+    let void_event = quote! { #prelude_path::Void };
 
     // Build the generics.
     let impl_generics = {
@@ -768,11 +770,21 @@ fn build_struct(ast: &DeriveInput, data_struct: &DataStruct) -> syn::Result<Toke
         quote! { #out_event_name }
     };
 
+    let void_event_conversion = quote! {
+        impl #impl_generics ::core::convert::From<#void_event> for #out_event_name #ty_generics #where_clause {
+            fn from(v: #void_event) -> Self {
+                #void::unreachable(v)
+            }
+        }
+    };
+
     // Now the magic happens.
     let final_quote = quote! {
         #deprecation_tokenstream
 
         #out_event_definition
+
+        #void_event_conversion
 
         impl #impl_generics #trait_to_impl for #name #ty_generics
         #where_clause
